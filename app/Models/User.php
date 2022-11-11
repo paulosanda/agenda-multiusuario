@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Agenda;
 
 class User extends Authenticatable
 {
@@ -44,8 +45,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function agenda(): BelongsToMany
+    public function agenda()
     {
-        return $this->belongsToMany(Agenda::class);
+        return $this->hasMany(Agenda::class);
     }
 }
