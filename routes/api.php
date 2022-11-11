@@ -20,9 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::resource('agenda', 'AgendaController', [
-        'only' => ['store']
-    ])->names([
-        'store' => 'agenda.store',
-    ]);
+    Route::resource('agenda', AgendaController::class)
+        ->only(['store'])
+        ->names([
+            'store' => 'agenda.store',
+        ]);
 });
