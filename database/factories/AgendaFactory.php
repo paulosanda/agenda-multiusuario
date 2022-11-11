@@ -17,7 +17,8 @@ class AgendaFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'evento' => fake()->sentence(),
+            'dataHora' => date_format(fake()->dateTime(), 'Y-m-d H:i:s'),
         ];
     }
 }
