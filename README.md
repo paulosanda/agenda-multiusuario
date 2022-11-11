@@ -18,3 +18,18 @@
 <p>As permissões serão aplicadas através de Policies e Gates</p>
 <p>Os envio de mensagens deve acontecer de forma assincrona com o uso de jobs.
 <p>Futuramente vamos implementar a conexão com a API do Google Agenda.
+
+### Segurança
+
+<p>Usamos o Sanctum para este projeto, portanto faça a instalação:
+<code>composer require laravel/sanctum</code></p>
+<p>Publique:</p>
+<code>php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"</code>
+<p>Faça o migrate:</p>
+<code>php artisan migrate</code>
+<p>Se estiver usando o sail:
+<code>./vendor/bin/sail php artisan migrate</code>
+
+#### Sail
+
+<p>Neste projeto existe um arquivo shellscript para o sail, caso deseje usar de as permissões necessárias e poderá usar como  ./sailup para iniciar os containeres.
