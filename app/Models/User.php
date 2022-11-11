@@ -45,8 +45,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function agenda(): BelongsToMany
+    public function agenda()
     {
-        return $this->belongsToMany(Agenda::class);
+        return $this->hasMany(Agenda::class);
     }
 }

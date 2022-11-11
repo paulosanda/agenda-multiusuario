@@ -17,14 +17,11 @@ return new class extends Migration
     {
         Schema::create('agendas', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class);
             $table->string('evento');
+            $table->softDeletes();
             $table->datetime('dataHora');
             $table->timestamps();
-        });
-
-        Schema::create('agenda_user', function (Blueprint $table) {
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Agenda::class);
         });
     }
 
