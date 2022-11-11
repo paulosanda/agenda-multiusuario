@@ -19,11 +19,16 @@ class AgendaModelTest extends TestCase
     /** @test */
     public function agendaInsert()
     {
-        $event = Agenda::factory()->createOne();
-        // dd($event);
+        $user = User::factory()->createOne();
+
+        $event = Agenda::factory()->createOne([
+            'user_id' => $user->id,
+        ]);
+
         $this->assertDatabaseHas('agendas', [
-            "evento" => $event['evento'],
-            "dataHora" => $event['dataHora'],
+            'user_id' => $user->id,
+            "evento" => $event->evento,
+            "dataHora" => $event->dataHora,
         ]);
     }
 }
