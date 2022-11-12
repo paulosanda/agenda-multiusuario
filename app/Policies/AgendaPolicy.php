@@ -30,7 +30,7 @@ class AgendaPolicy
      */
     public function view(User $user, Agenda $agenda)
     {
-        //
+        return $user->id == $agenda->user_id;
     }
 
     /**
@@ -41,6 +41,7 @@ class AgendaPolicy
      */
     public function create(User $user)
     {
+        //
     }
 
     /**
