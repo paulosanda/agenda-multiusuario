@@ -10,15 +10,11 @@ class AgendaPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function viewAny(User $user)
+    public function before(User $user)
     {
-        return $user->is_admin == 1;
+        if ($user->is_admin == 1) {
+            return true;
+        }
     }
 
     /**
@@ -30,7 +26,7 @@ class AgendaPolicy
      */
     public function view(User $user, Agenda $agenda)
     {
-        //
+        return $user->id == $agenda->user_id;
     }
 
     /**
@@ -41,6 +37,7 @@ class AgendaPolicy
      */
     public function create(User $user)
     {
+        //
     }
 
     /**
@@ -52,7 +49,8 @@ class AgendaPolicy
      */
     public function update(User $user, Agenda $agenda)
     {
-        //
+
+        return $user->id === $agenda->user_id;
     }
 
     /**
