@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Services\AgendaEventoStore;
 
 class AgendaController extends Controller
 {
@@ -34,7 +36,13 @@ class AgendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newEvento = app(AgendaEventoStore::class)->execute([
+            'user_id' => Auth::user()->id,
+            'evento' => $request->evento,
+            'dataHora' => $request->dataHora,
+        ]);
+
+        return $newEvento;
     }
 
     /**
