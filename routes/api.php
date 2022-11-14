@@ -30,4 +30,8 @@ Route::middleware('auth:sanctum')->group(function () {
         ->name('agenda.user.store');
     Route::get('/agenda/user/{id}', [AgendaUserController::class, 'show'])
         ->name('agenda.user.show');
+    Route::put('/agenda/user/{id}', [AgendaUserController::class, 'update'])
+        ->name('agenda.user.update');
+    Route::get('/agenda/user/list/{id}', [AgendaUserController::class, 'list'])
+        ->name('agenda.user.list');
 });
