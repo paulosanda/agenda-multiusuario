@@ -38,7 +38,11 @@ class AgendaPolicy
      */
     public function update(User $user, Agenda $agenda)
     {
-
         return $user->id === $agenda->user_id;
+    }
+
+    public function delete(User $user, Agenda $agenda)
+    {
+        return $user->id == $agenda->user_id;
     }
 }

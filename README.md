@@ -32,4 +32,4 @@
 
 #### Sail
 
-<p>Neste projeto existe um arquivo shellscript para o sail, caso deseje usar de as permissões necessárias e poderá usar como  ./sailup para iniciar os containeres.
+<p>Neste projeto existe um arquivo shellscript para o sail, caso deseje usar de as permissões necessárias e poderá usar como  ./sailup para iniciar os containeres e ./saildown para finaliza-los.

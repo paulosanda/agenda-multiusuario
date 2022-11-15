@@ -6,6 +6,7 @@ use App\Services\AgendaUserStore;
 use App\Services\AgendaEventoUpdate;
 use App\Services\AgendaEventoShow;
 use App\Services\AgendaEventoList;
+use App\Services\AgendaEventoDelete;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Agenda;
@@ -86,6 +87,16 @@ class AgendaUserController extends Controller
             'evento' => $evento,
             'dataHora' => $dataHora
         ]);
+
+        return $response;
+    }
+
+    public function delete(Agenda $agenda, $id)
+    {
+        // dd($id);
+        $this->authorize('delete', $agenda->find($id));
+
+        $response = app(AgendaEventoDelete::class)->execute($id);
 
         return $response;
     }
