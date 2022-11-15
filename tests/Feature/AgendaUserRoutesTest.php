@@ -194,4 +194,40 @@ class AgendaUserRoutesTest extends TestCase
             ->assertStatus(200)
             ->assertJsonCount(5);
     }
+
+    /** @test*/
+    public function userCanDeleteEventoInOwnAgenda()
+    {
+        $user = User::factory()->createOne();
+        $agenda = Agenda::factory()->createOne([
+            'user_id' => $user->id
+        ]);
+
+        /** @var User $user */
+        $this->actingAs($user)->delete(route('agenda.user.delete', $agenda->id))
+            ->assertStatus(200);
+        $this->assertDatabaseMissing('agendas', [
+            'id' => $agenda->id,
+        ]);
+    }
+
+    /** @test*/
+    public function adminCanDeleteAnyEvento()
+    {
+        $user = User::factory()->createOne();
+        $agenda = Agenda::factory()->createOne([
+            'user_id' => $user->id
+        ]);
+
+        $admin = User::factory()->createOne([
+            'is_admin' => 1,
+        ]);
+
+        /** @var User $admin */
+        $this->actingAs($admin)->delete(route('agenda.user.delete', $agenda->id))
+            ->assertStatus(200);
+        $this->assertDatabaseMissing('agendas', [
+            'id' => $agenda->id,
+        ]);
+    }
 }
