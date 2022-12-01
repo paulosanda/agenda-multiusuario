@@ -25,6 +25,7 @@ jobs:
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
     - name: Create Database
+      run: composer dump-autoload
       run: |
         mkdir -p database
         touch database/database.sqlite
